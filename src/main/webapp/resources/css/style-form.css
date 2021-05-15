@@ -1,0 +1,219 @@
+/*      Main, Container and divs        */
+html {
+    font-family: 'Manrope', sans-serif !important;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url("../img/png/bg-img.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+main {
+    min-height: 80vh;
+    flex: 1 0 auto;
+}
+
+#container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    min-height: 91.1vh;
+    min-width: 40%;
+    background-color: #121212;
+    position: relative;
+    border-bottom: solid 1px #fafafa;
+}
+
+.div-over-bg {
+    color: #fafafa;
+}
+
+.div-center {
+    width: 50vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center-content {
+    text-align: center;
+}
+
+#logo {
+    background-image: url("../svg/logo-gr-txt-wh.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 2em;
+    height: 12em;
+    width: 100%;
+}
+
+#formContainer {
+    width: 60%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#formInput {
+    margin-top: 1.5em;
+}
+
+#secondaryText {
+    margin: 1em;
+    text-align: center;
+    color: #fafafa;
+}
+
+#logoSvg {
+    margin-bottom: 1em;
+}
+
+/*      Video       */
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    filter: brightness(0.9);
+    position: absolute;
+    width: 105%;
+    height: 105%;
+    object-fit: cover;
+}
+
+/*      Text        */
+h1, h2, h3, h4 {
+    margin-top: 0 !important;
+    color: #fafafa;
+}
+
+#secondaryText a:link, a:hover, a:visited, a:active {
+    color: #05c1fd;
+}
+
+/*      Materialize components      */
+
+.character-counter {
+    color: #fafafa !important;
+}
+
+.btn-large {
+    width: 100%;
+    color: #fafafa !important;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+}
+
+.btn-large.btn-large.waves-effect {
+    background-color: #121212;
+}
+
+.btn-large.waves-effect.waves-light { 
+    border: 2px solid #fafafa; 
+}
+
+footer {
+    background-color: #121212 !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+
+.footer-div {
+    padding: 10px;
+    color: #fafafa;
+}
+
+.round {
+    border-radius: 8% 50%;
+}
+
+.input-field input {
+    color: #fafafa !important;
+}
+
+.multi-text {
+    display: flex;
+}
+
+.half-lenght {
+    width: 45%;
+}
+
+.pos-left {
+    float: left;
+    margin-right: 1.5em;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.pos-right {
+    float: right;
+    margin-left: 1.5em;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/*      Text        */
+
+.input-field input[type=text]:focus + label, .input-field input[type=number]:focus + label {
+    color: #05c1fd !important;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus,  .input-field input[type=number]:focus{
+    border-bottom: 1px solid #05c1fd !important;
+    box-shadow: 0 1px 0 0 #05c1fd !important;
+}
+
+/* valid color */
+.input-field input[type=text].valid, .input-field input[type=number].valid {
+    border-bottom: 1px solid #121212;
+    box-shadow: 0 1px 0 0 #121212;
+}
+
+/* invalid color */
+.input-field input[type=text].invalid, .input-field input[type=number].invalid {
+    border-bottom: 1px solid red !important;
+    box-shadow: 0 1px 0 0 red !important;
+}
+
+/*      Password     */
+
+.input-field input[type=password]:focus + label, .input-field input[type=number]:focus + label {
+    color: #05c1fd !important;
+}
+
+/* label underline focus color */
+.input-field input[type=password]:focus,  .input-field input[type=number]:focus{
+    border-bottom: 1px solid #05c1fd !important;
+    box-shadow: 0 1px 0 0 #05c1fd !important;
+}
+
+/* valid color */
+.input-field input[type=password].valid, .input-field input[type=number].valid {
+    border-bottom: 1px solid #121212;
+    box-shadow: 0 1px 0 0 #121212;
+}
+
+/* invalid color */
+.input-field input[type=password].invalid, .input-field input[type=number].invalid {
+    border-bottom: 1px solid red !important;
+    box-shadow: 0 1px 0 0 red !important;
+}
+
+.helper-text {
+    color: #9E9E9E !important;
+}

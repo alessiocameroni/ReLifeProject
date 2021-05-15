@@ -1,0 +1,98 @@
+/*      Main, Container and divs        */
+html {
+    font-family: 'Manrope', sans-serif !important;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url("../img/png/bg-img.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+main {
+    min-height: 80vh;
+    flex: 1 0 auto;
+}
+
+#container {
+    min-height: 91vh;
+}
+
+.div-over-bg {
+    color: #fafafa;
+}
+
+.div-center {
+    width: 50vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center-content {
+    text-align: center;
+}
+
+#logo {
+    background-image: url("../svg/logo-gr-txt-wh.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 2em;
+    height: 12em;
+    width: 100%;
+}
+
+/*      Video       */
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    filter: brightness(0.9);
+    position: absolute;
+    width: 105%;
+    height: 105%;
+    object-fit: cover;
+}
+
+/*      Text        */
+
+
+/*      Materializa components      */
+.btn-large {
+    color: #fafafa !important;
+}
+
+.btn-large.btn-large.waves-effect {
+    background-color: #121212;
+}
+
+footer {
+    background-color: #121212 !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+
+.footer-div {
+    padding: 10px;
+    color: #fafafa;
+}
+
+.round {
+    border-top-left-radius: 20% 50% !important;
+    border-bottom-left-radius: 20% 50% !important;
+    border-top-right-radius: 20% 50% !important;
+    border-bottom-right-radius: 20% 50% !important;
+}
+
