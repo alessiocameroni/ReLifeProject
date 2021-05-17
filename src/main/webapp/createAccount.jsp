@@ -30,8 +30,7 @@
             <div id="container">
                 <div id="formContainer">
                     <div id="textTitle">
-                        <object id="logoSvg" data="resources/svg/logo-gr.svg" width="50" height="50"></object>
-                        <h4><strong>Crea il tuo account</strong></h4>
+                        <h5><strong>Crea il tuo account</strong></h5>
                     </div>
                     <div id="formInput">
                         <div class="multi-text">
@@ -69,6 +68,16 @@
                             <div class="input-field half-lenght pos-right">
                                 <input id="textbox-confirm-password" name="tbPassword" type="password" class="validate" required>
                                 <label for="textbox-confirm-password">Conferma password</label>
+                            </div>
+                        </div>
+
+                        <div class="file-field input-field">
+                            <div class="btn btn-file-upload">
+                                <span><i class="material-icons-outlined">file_upload</i></span>
+                                <input type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Carica una foto">
                             </div>
                         </div>
 

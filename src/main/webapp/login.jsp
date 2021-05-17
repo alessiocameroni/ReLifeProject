@@ -30,8 +30,7 @@
             <div id="container">
                 <div id="formContainer">
                     <div id="textTitle">
-                        <object id="logoSvg" data="resources/svg/logo-gr.svg" width="50" height="50"></object>
-                        <h4><strong>Accedi a ReLife</strong></h4>
+                        <h5><strong>Accedi a ReLife</strong></h5>
                     </div>
                     <div id="formInput">
                         <div class="input-field">

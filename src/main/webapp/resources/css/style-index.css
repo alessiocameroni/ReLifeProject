@@ -7,9 +7,6 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-image: url("../img/png/bg-img.png");
-    background-size: contain;
-    background-repeat: no-repeat;
 }
 
 main {
@@ -38,7 +35,7 @@ main {
 }
 
 #logo {
-    background-image: url("../svg/logo-gr-txt-wh.svg");
+    background-image: url("../img/svg/logo-gr-txt-wh.svg");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

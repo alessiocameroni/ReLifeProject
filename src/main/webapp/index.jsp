@@ -23,7 +23,9 @@
 
             <div id="container">
                 <div class="div-center div-over-bg">
-                    <div id="logo"></div>
+                    <div id="logo">
+                        <object id="logoSvg" data="resources/img/svg/logo-gr-txt-wh.svg" width="100%" height="100%"></object>
+                    </div>
 
                     <div class="center-content">
                         <a href="createAccount.jsp" class="waves-effect waves-light btn-large round z-depth-0">
