@@ -32,28 +32,30 @@
                     <div id="textTitle">
                         <h5><strong>Accedi a ReLife</strong></h5>
                     </div>
-                    <div id="formInput">
-                        <div class="input-field">
-                            <input id="textbox-username" name="tbUsername" type="text" class="validate" maxlength="20" autocomplete="off" required>
-                            <label for="textbox-username">Username</label>
-                            <span class="helper-text">Max 20 caratteri</span>
+                    <form action="" >
+                        <div id="formInput">
+                            <div class="input-field">
+                                <input id="textbox-username" name="tbUsername" type="text" class="validate" maxlength="20" autocomplete="off" required>
+                                <label for="textbox-username">Username</label>
+                                <span class="helper-text">Max 20 caratteri</span>
+                            </div>
+
+                            <div class="input-field">
+                                <input id="textbox-password" name="tbPassword" type="password" class="validate" required>
+                                <label for="textbox-password">Password</label>
+                            </div>
+
+                            <button type="submit" class="waves-effect waves-light btn-large round z-depth-0">accedi</button>
+
+                            <div class="divider"></div>
+
+                            <div id="secondaryText">
+                                <strong><a href="forgotPassword.jsp">Password dimenticata?</a>
+                                ·
+                                <a href="createAccount.jsp">Iscriviti a ReLife</a></strong>
+                            </div>
                         </div>
-
-                        <div class="input-field">
-                            <input id="textbox-password" name="tbPassword" type="password" class="validate" required>
-                            <label for="textbox-password">Password</label>
-                        </div>
-
-                        <button type="submit" class="waves-effect waves-light btn-large round z-depth-0">accedi</button>
-
-                        <div class="divider"></div>
-
-                        <div id="secondaryText">
-                            <strong><a href="forgotPassword.jsp">Password dimenticata?</a>
-                            ·
-                            <a href="createAccount.jsp">Iscriviti a ReLife</a></strong>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </main>
