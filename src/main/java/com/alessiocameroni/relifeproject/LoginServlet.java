@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
                     sessione.setAttribute("nomecompleto", nomeCompleto);
                     sessione.setMaxInactiveInterval(30 * 60);
 
-                    response.sendRedirect("catalog.jsp");
+                    response.sendRedirect("feed.jsp");
                 } else {
                     errorString = "Username e/o password sbagliati. Riprovare.";
                     String link = String.format("%s/login.jsp?errore=%s", request.getContextPath(), errorString);
