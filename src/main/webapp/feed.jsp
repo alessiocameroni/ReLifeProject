@@ -5,6 +5,8 @@
     String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
 
     if(nomeCompleto != null) {
+        String[] arrNome = nomeCompleto.split(" ");
+        String nomeUtente = arrNome[1] + " " + arrNome[2];
 %>
 <html>
     <head>
@@ -47,7 +49,7 @@
                         </div>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li>
-                                <a id="account-link" class="dropdown-trigger tooltipped" href="" data-target="account-dropdown" data-position="left" data-tooltip="Utente DEMO">
+                                <a id="account-link" class="dropdown-trigger tooltipped" href="" data-target="account-dropdown" data-position="down" data-tooltip="<%=nomeUtente%>">
                                     <i class="material-icons-outlined">account_circle</i>
                                 </a>
                                 <ul id="account-dropdown" class="dropdown-content" tabindex="0">
@@ -75,7 +77,7 @@
                     </div>
                     <div class="post-body">
                         <!-- Immagine -->
-                        <div class="post-img materialboxed"></div>
+                        <div class="post-img materialboxed" style="background-image: url('resources/img/svg/photo_placeholder-large.svg')"></div>
                     </div>
                     <div class="post-footer">
                         <!-- Pulsante commenti, numero commenti-->
