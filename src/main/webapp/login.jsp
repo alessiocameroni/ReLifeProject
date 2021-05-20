@@ -28,8 +28,10 @@
                 response.sendRedirect("feed.jsp");
             }
 
-            if(request.getParameter("errore") != null) { %>
-                <script>M.toast({html: 'Username e/o password sbagliati', classes: 'rounded'})</script>
+            if(request.getParameter("errore") != null) {
+                String errore = request.getParameter("errore");
+        %>
+                <script>M.toast({html: '<%=errore%>', classes: 'rounded'})</script>
         <%}%>
 
         <main>
