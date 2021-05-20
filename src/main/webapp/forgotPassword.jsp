@@ -27,6 +27,11 @@
                 </video>
             </div>
 
+            <div id="infoContainer">
+                Sito creato a scopo didattico<br>
+                ITT Fauser | Cameroni Alessio - 2020/2021
+            </div>
+
             <div id="container">
                 <form action="login-servlet" enctype="multipart/form-data" method="post">
                     <div id="formContainer">
@@ -64,12 +69,5 @@
                 </form>
             </div>
         </main>
-
-        <footer class="page-footer">
-            <div class="footer-div">
-                Sito creato a scopo didattico<br>
-                ITT Fauser | Cameroni Alessio - 2020/2021
-            </div>
-        </footer>
     </body>
 </html>

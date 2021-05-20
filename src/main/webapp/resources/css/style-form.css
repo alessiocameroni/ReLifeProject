@@ -18,11 +18,10 @@ main {
     margin-left: auto;
     margin-right: auto;
     width: 40%;
-    min-height: 91.1vh;
+    min-height: 100vh;
     min-width: 40%;
     background-color: #121212;
     position: relative;
-    border-bottom: solid 1px #fafafa;
 }
 
 .div-over-bg {
@@ -66,6 +65,15 @@ main {
     margin: 1em;
     text-align: center;
     color: #fafafa;
+}
+
+#infoContainer {
+    position: absolute;
+    color: #fafafa;
+    margin-bottom: 1em;
+    margin-left: 1em;
+    bottom: 0;
+    left: 0;
 }
 
 /*      Video       */
