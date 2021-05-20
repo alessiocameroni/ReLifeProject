@@ -4,6 +4,9 @@ html {
 }
 
 body {
+    background-image: url(../img/png/bg-img.png);
+    background-size: cover;
+    background-position: center;
     display: flex;
     min-height: 100vh;
     flex-direction: column;

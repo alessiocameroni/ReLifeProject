@@ -20,6 +20,11 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String azione = request.getParameter("azione");
 
+        if(azione == null) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            return;
+        }
+
         switch (azione) {
             case "login":
                 executeLogin(request, response);

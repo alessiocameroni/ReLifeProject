@@ -49,10 +49,8 @@
                     <div id="textTitle">
                         <h5><strong>Accedi a ReLife</strong></h5>
                     </div>
-                    <form action="login-servlet" enctype="multipart/form-data" method="POST">
+                    <form action="login-servlet" method="POST">
                         <div id="formInput">
-                            <input hidden name="azione" value="login">
-
                             <div class="input-field">
                                 <input id="textbox-username" name="tbUsername" type="text" class="validate" maxlength="20" autocomplete="off" required>
                                 <label for="textbox-username">Username</label>
@@ -63,6 +61,8 @@
                                 <input id="textbox-password" name="tbPassword" type="password" class="validate" required>
                                 <label for="textbox-password">Password</label>
                             </div>
+
+                            <input type="hidden" name="azione" value="login">
 
                             <button type="submit" class="waves-effect waves-light btn-large round z-depth-0">accedi</button>
 
