@@ -20,6 +20,20 @@
     </head>
 
     <body>
+        <%
+            HttpSession sessione = request.getSession(false);
+            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
+
+            if(nomeCompleto != null) {
+                response.sendRedirect("feed.jsp");
+            }
+
+            if(request.getParameter("errore") != null) {
+                String errore = request.getParameter("errore");
+        %>
+                <script>M.toast({html: '<%=errore%>', classes: 'rounded'})</script>
+        <%}%>
+
         <main>
             <div class="fullscreen-bg">
                 <video autoplay muted loop class="fullscreen-bg__video">
@@ -33,7 +47,7 @@
             </div>
 
             <div id="container">
-                <form action="login-servlet" enctype="multipart/form-data" method="post">
+                <form action="login-servlet" method="post">
                     <div id="formContainer">
                         <div id="textTitle">
                             <h5><strong>Password dimenticata?</strong></h5>
@@ -54,6 +68,8 @@
                                 <input id="textbox-confirm-password" name="tbConfirmPassword" type="password" class="validate" required>
                                 <label for="textbox-confirm-password">Conferma password</label>
                             </div>
+
+                            <input type="hidden" name="azione" value="changePwd">
 
                             <button type="submit" class="waves-effect waves-light btn-large round z-depth-0">conferma</button>
 

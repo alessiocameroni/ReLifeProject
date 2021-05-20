@@ -164,24 +164,28 @@ public class LoginServlet extends HttpServlet {
     private void changePassword (HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
 
-        String username = request.getParameter("tbUsername");
+        String username = request.getParameter("tbUsername").toLowerCase();
         boolean checkName = checkName(username);
 
         PrintWriter out = response.getWriter();
 
         if(checkName) {
-            String pwd1 = request.getParameter("tbPwd1");
-            String pwd2 = request.getParameter("tbPwd2");
+            String pwd = request.getParameter("tbNewPassword");
+            String pwdCheck = request.getParameter("tbConfirmPassword");
 
-            if(checkPwd(pwd1, pwd2)) {
-                changePwd(username, pwd1);
+            if(checkPwd(pwd, pwdCheck)) {
+                changePwd(username, pwd);
 
                 response.sendRedirect("login.jsp");
             } else {
-                //TODO Aggiungi errore
+                errorString = "Le password non sono uguali. Riprovare.";
+                String link = String.format("%s/forgotPassword.jsp?errore=%s", request.getContextPath(), errorString);
+                response.sendRedirect(link);
             }
         } else {
-            //TODO Aggiungi errore
+            errorString = "Non esiste un utente con questo username.";
+            String link = String.format("%s/forgotPassword.jsp?errore=%s", request.getContextPath(), errorString);
+            response.sendRedirect(link);
         }
     }
 
@@ -193,8 +197,7 @@ public class LoginServlet extends HttpServlet {
             String password = dub.getPassword();
 
             try (Connection con = DriverManager.getConnection(url, user, password)) {
-                //TODO Cambia database e crea metodo
-                String strSql = "CALL musicshop_change_pwd (?, ?) ";
+                String strSql = "CALL siteUser_change_pwd (?, ?) ";
 
                 try (PreparedStatement ps = con.prepareStatement(strSql)) {
                     ps.setString(1, username);
@@ -205,7 +208,6 @@ public class LoginServlet extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
         }
 
         //      Checks
@@ -218,8 +220,7 @@ public class LoginServlet extends HttpServlet {
             String password = dub.getPassword();
 
             try (Connection con = DriverManager.getConnection(url, user, password)) {
-                //TODO Cambia query SQL
-                String strSql = "SELECT username FROM musicshop_users WHERE username = ?";
+                String strSql = "SELECT username FROM siteUser WHERE username = ?";
 
                 try (PreparedStatement ps = con.prepareStatement(strSql)) {
                     ps.setString(1, username);
