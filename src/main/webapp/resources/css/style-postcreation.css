@@ -157,7 +157,7 @@ a:link, a:hover, a:visited, a:active {
     margin-left: 0.5em;
 }
 
-.dropdown-content {
+#account-dropdown li a {
     color: black !important;
 }
 
