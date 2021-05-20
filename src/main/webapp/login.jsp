@@ -20,6 +20,18 @@
     </head>
 
     <body>
+        <%
+            HttpSession sessione = request.getSession(false);
+            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
+
+            if(nomeCompleto != null) {
+                response.sendRedirect("feed.jsp");
+            }
+
+            if(request.getParameter("errore") != null) { %>
+                <script>M.toast({html: 'Username e/o password sbagliati', classes: 'rounded'})</script>
+        <%}%>
+
         <main>
             <div class="fullscreen-bg">
                 <video autoplay muted loop class="fullscreen-bg__video">
@@ -32,7 +44,7 @@
                     <div id="textTitle">
                         <h5><strong>Accedi a ReLife</strong></h5>
                     </div>
-                    <form action="" >
+                    <form action="login-servlet" enctype="multipart/form-data" method="POST">
                         <div id="formInput">
                             <div class="input-field">
                                 <input id="textbox-username" name="tbUsername" type="text" class="validate" maxlength="20" autocomplete="off" required>
