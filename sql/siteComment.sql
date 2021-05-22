@@ -6,7 +6,7 @@ USE dbReLife;
 
 DROP TABLE IF EXISTS siteComment;
 
-CREATE TABLE sitePost (
+CREATE TABLE siteComment (
     codice INT AUTO_INCREMENT PRIMARY KEY,
     data DATE NOT NULL,
     ora TIME NOT NULL,
@@ -28,7 +28,7 @@ CREATE PROCEDURE addComment (
 
 DETERMINISTIC
 BEGIN
-    INSERT INTO sitePost(codice, data, ora, codiceUtente, codicePost)
+    INSERT INTO siteComment(codice, data, ora, codiceUtente, codicePost)
     VALUES(param_codice, param_data, param_ora, param_codiceUtente, param_codicePost) ;
 END //
 DELIMITER ;
