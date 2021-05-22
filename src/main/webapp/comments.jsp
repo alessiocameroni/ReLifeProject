@@ -42,7 +42,7 @@
                         </div>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li>
-                                <a id="account-link" class="dropdown-trigger tooltipped" href="" data-target="account-dropdown" data-position="left" data-tooltip="Utente DEMO">
+                                <a id="account-link" class="dropdown-trigger tooltipped" href="login-servlet" data-target="account-dropdown" data-position="left" data-tooltip="Utente DEMO">
                                     <i class="material-icons-outlined">account_circle</i>
                                 </a>
                                 <ul id="account-dropdown" class="dropdown-content" tabindex="0">
@@ -82,7 +82,7 @@
                             <div class="brand-logo">
                                 <ul class="left">
                                     <li>
-                                        <a class="waves-effect waves-light btn-flat btn-back" href="feed.html">Indietro <i class="material-icons left">arrow_back</i></a>
+                                        <a class="waves-effect waves-light btn-flat btn-back" href="feed.jsp">Indietro <i class="material-icons left">arrow_back</i></a>
                                     </li>
                                 </ul>
                             </div>

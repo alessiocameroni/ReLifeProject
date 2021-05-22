@@ -11,6 +11,7 @@ CREATE TABLE sitePost (
     data DATE NOT NULL,
     ora TIME NOT NULL,
     fileImmagine LONGBLOB NOT NULL,
+    tipo VARCHAR(30) NOT NULL,
     codiceUtente VARCHAR(20),
     FOREIGN KEY (codiceUtente) REFERENCES siteUser(username)
 );
@@ -18,16 +19,16 @@ CREATE TABLE sitePost (
 DROP PROCEDURE IF EXISTS addPost;
 DELIMITER //
 CREATE PROCEDURE addPost (
-    param_codice INT,
     param_data DATE,
     param_ora TIME,
     param_fileImmagine LONGBLOB,
+    param_tipo VARCHAR(30),
     param_codiceUtente VARCHAR(20)
 )
 
 DETERMINISTIC
 BEGIN
-    INSERT INTO sitePost(codice, data, ora, param_fileImmagine, codiceUtente)
-    VALUES(param_codice, param_data, param_ora, param_fileImmagine, param_codiceUtente) ;
+    INSERT INTO sitePost(data, ora, fileImmagine, tipo, codiceUtente)
+    VALUES(param_data, param_ora, param_fileImmagine, param_tipo, param_codiceUtente) ;
 END //
 DELIMITER ;

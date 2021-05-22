@@ -30,6 +30,13 @@
     </head>
 
     <body>
+        <%
+            if(request.getParameter("errore") != null) {
+                String errore = request.getParameter("errore");
+        %>
+                <script>M.toast({html: '<%=errore%>', classes: 'rounded'})</script>
+        <%}%>
+
         <main>
             <div class="navbar-fixed">
                 <nav class="z-depth-0">
@@ -42,7 +49,7 @@
                         </div>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li>
-                                <a id="account-link" class="dropdown-trigger tooltipped" href="" data-target="account-dropdown" data-position="down" data-tooltip="<%=nomeUtente%>">
+                                <a id="account-link" class="dropdown-trigger tooltipped" href="login-servlet" data-target="account-dropdown" data-position="down" data-tooltip="<%=nomeUtente%>">
                                     <i class="material-icons-outlined">account_circle</i>
                                 </a>
                                 <ul id="account-dropdown" class="dropdown-content" tabindex="0">
@@ -71,12 +78,14 @@
                             <div class="file-field input-field">
                                 <div class="btn btn-file-upload">
                                     <span><i class="material-icons-outlined">file_upload</i></span>
-                                    <input type="file" required>
+                                    <input type="file" name="inputImage" required>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text" placeholder="Carica una foto">
                                 </div>
                             </div>
+
+                            <input type="hidden" name="azione" value="createPost">
 
                             <button type="submit" class="waves-effect waves-light btn-large round btn-upload z-depth-0">Crea post</button>
                         </form>
