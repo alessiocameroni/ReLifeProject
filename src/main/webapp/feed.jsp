@@ -1,4 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="edu.fauser.DbUtility" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.io.Console" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <%
     HttpSession sessione = request.getSession(false);
@@ -49,7 +53,7 @@
                         </div>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li>
-                                <a id="account-link" class="dropdown-trigger tooltipped" href="login-servlet" data-target="account-dropdown" data-position="down" data-tooltip="<%=nomeUtente%>">
+                                <a id="account-link" class="dropdown-trigger tooltipped" href="login-servlet" data-target="account-dropdown" data-position="left" data-tooltip="<%=nomeUtente%>">
                                     <i class="material-icons-outlined">account_circle</i>
                                 </a>
                                 <ul id="account-dropdown" class="dropdown-content" tabindex="0">
@@ -63,40 +67,65 @@
             </div>
 
             <div id="container">
-                <div class="post">
-                    <div class="post-header">
-                        <!-- Cognome, nome, data, ora -->
-                        <div class="post-header-col1">
-                            <i class="material-icons-outlined">account_circle</i>
-                            Cameroni Alessio
+                <%
+                    DbUtility dbu = DbUtility.getInstance(sessione.getServletContext());
+
+                    try(
+                            Connection con = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword());
+                            Statement ps = con.createStatement();
+                            ResultSet rs = ps.executeQuery("SELECT sitePost.*, nome, cognome FROM sitePost, siteUser " +
+                                    "WHERE sitePost.codiceUtente = siteUser.username")
+                    ){
+                %>
+
+                <form action="feed-servlet" method="post">
+                <%
+                        while (rs.next()) {%>
+
+                    <div class="post">
+                        <div class="post-header">
+                            <!-- Cognome, nome, data, ora -->
+                            <div class="post-header-col1">
+                                <i class="material-icons-outlined">account_circle</i>
+                                Cameroni Alessio
+                            </div>
+                            <div class="post-header-col2">
+                                12-08-2002<br>
+                                16:00
+                            </div>
                         </div>
-                        <div class="post-header-col2">
-                            12-08-2002<br>
-                            16:00
+                        <div class="post-body">
+                            <!-- Immagine -->
+                            <div class="post-img materialboxed" style="background-image: url(resources/img/svg/photo_placeholder-large.svg)"></div>
+                        </div>
+                        <div class="post-footer">
+                            <!-- Pulsante commenti, numero commenti-->
+                            <div class="post-footer-col1">
+                                0
+                            </div>
+                            <div class="post-footer-col2">
+                                <a href="comments.jsp" data-position="left">
+                                    <i class="material-icons-outlined">comment</i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="post-body">
-                        <!-- Immagine -->
-                        <div class="post-img materialboxed" style="background-image: url('resources/img/svg/photo_placeholder-large.svg')"></div>
+
+                <%      };
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                %>
+                    <div class="error-div">
+                        <h5>Errore con il caricamento dei dati.</h5>
                     </div>
-                    <div class="post-footer">
-                        <!-- Pulsante commenti, numero commenti-->
-                        <div class="post-footer-col1">
-                            0
-                        </div>
-                        <div class="post-footer-col2">
-                            <a href="comments.jsp" data-position="left">
-                                <i class="material-icons-outlined">comment</i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <%};%>
+                </form>
             </div>
         </main>
     </body>
 </html>
 <%
-} else {
+    } else {
         response.sendRedirect("index.jsp");
     }
 %>

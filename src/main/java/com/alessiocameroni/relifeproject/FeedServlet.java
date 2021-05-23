@@ -8,10 +8,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.io.InputStream;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -37,9 +35,7 @@ public class FeedServlet extends HttpServlet {
         }
 
         switch (azione) {
-            case "feed":
-                break;
-            case "comments":
+            case "createComment":
                 break;
             case "createPost":
                 createPost(request, response);
@@ -50,8 +46,12 @@ public class FeedServlet extends HttpServlet {
         }
     }
 
-    //      Create post function
+    //      Load comments function
+    private void loadComments(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
+    }
+
+    //      Create post function
     private void createPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession sessione = request.getSession(false);
         String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
@@ -102,7 +102,6 @@ public class FeedServlet extends HttpServlet {
     }
 
     //      Extra functions
-
     //      Returns current time and date
     private String getDateTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");

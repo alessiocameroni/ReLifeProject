@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
         String password = dub.getPassword();
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {
-            String strSql = "SELECT username, nome FROM siteUser WHERE username = ? AND SHA2(CONCAT(salt, ?), 256) = password_hash";
+            String strSql = "SELECT username, nome, cognome FROM siteUser WHERE username = ? AND SHA2(CONCAT(salt, ?), 256) = password_hash";
 
             try (PreparedStatement ps = con.prepareStatement(strSql)) {
                 ps.setString(1, tbUsername);
@@ -76,7 +76,8 @@ public class LoginServlet extends HttpServlet {
                 if (rs.next()) {
                     String username = rs.getString("username");
                     String nome = rs.getString("nome");
-                    String nomeCompleto = String.format("%s %s", username, nome);
+                    String cognome = rs.getString("cognome");
+                    String nomeCompleto = String.format("%s %s %s", username, cognome, nome);
 
                     sessione = request.getSession(true);
                     sessione.setAttribute("nomecompleto", nomeCompleto);
@@ -108,14 +109,15 @@ public class LoginServlet extends HttpServlet {
 
     //      Account creation functions
     private void createAccount (HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String nome = request.getParameter("tbSurname") + " " + request.getParameter("tbName");
+        String nome = request.getParameter("tbName");
+        String cognome = request.getParameter("tbSurname");
         String username =  request.getParameter("tbUsername").toLowerCase();
         String luogo = request.getParameter("tbPlace");
         String pwd = request.getParameter("tbPassword");
         String pwdCheck = request.getParameter("tbConfirmPassword");
 
         if(checkPwd(pwd, pwdCheck)) {
-            if(addToDatabase(nome, username, luogo, pwd)) {
+            if(addToDatabase(nome, cognome, username, luogo, pwd)) {
                 response.sendRedirect("login.jsp");
             } else {
                 errorString = "Errore nella creazione dell'account. Riprovare più tardi.";
@@ -130,7 +132,7 @@ public class LoginServlet extends HttpServlet {
     }
 
         //      DB Handling
-        private boolean addToDatabase(String nome, String username, String luogo, String pwd) {
+        private boolean addToDatabase(String nome, String cognome, String username, String luogo, String pwd) {
             boolean check = false;
 
             DbUtility dub = DbUtility.getInstance(getServletContext());
@@ -139,13 +141,14 @@ public class LoginServlet extends HttpServlet {
             String password = dub.getPassword();
 
             try (Connection con = DriverManager.getConnection(url, user, password)) {
-                String strSql = "CALL addUser (?, ?, ?, ?)";
+                String strSql = "CALL addUser (?, ?, ?, ?, ?)";
 
                 try (PreparedStatement ps = con.prepareStatement(strSql)) {
                     ps.setString(1, username);
                     ps.setString(2, pwd);
                     ps.setString(3, nome);
-                    ps.setString(4, luogo);
+                    ps.setString(4, cognome);
+                    ps.setString(5, luogo);
 
                     int rows = ps.executeUpdate();
 

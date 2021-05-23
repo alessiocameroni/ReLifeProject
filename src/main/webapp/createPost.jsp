@@ -49,7 +49,7 @@
                         </div>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li>
-                                <a id="account-link" class="dropdown-trigger tooltipped" href="login-servlet" data-target="account-dropdown" data-position="down" data-tooltip="<%=nomeUtente%>">
+                                <a id="account-link" class="dropdown-trigger tooltipped" href="login-servlet" data-target="account-dropdown" data-position="left" data-tooltip="<%=nomeUtente%>">
                                     <i class="material-icons-outlined">account_circle</i>
                                 </a>
                                 <ul id="account-dropdown" class="dropdown-content" tabindex="0">
