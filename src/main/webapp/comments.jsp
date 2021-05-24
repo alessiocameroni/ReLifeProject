@@ -74,10 +74,13 @@
                         Statement ps = con.createStatement();
                         ResultSet rsPost = ps.executeQuery("SELECT sitePost.*, nome, cognome " +
                                 "FROM sitePost, siteUser " +
-                                "WHERE sitePost.codiceUtente = siteUser.username");
-                        ResultSet rsCommento = ps.executeQuery("SELECT u.cognome, u.nome, c.data, c.ora, c.testo " +
+                                "WHERE sitePost.codiceUtente = siteUser.username " +
+                                "AND sitePost.codice = " + request.getParameter("codicePost"));
+
+                        ResultSet rsCommento = ps.executeQuery("SELECT DISTINCT u.cognome, u.nome, c.data, c.ora, c.testo " +
                                 "FROM sitePost p, siteuser u, sitecomment c\n" +
-                                "WHERE c.codiceUtente = u.username AND c.codicePost = p.codice ")
+                                "WHERE c.codiceUtente = u.username " +
+                                "AND c.codicePost = " + request.getParameter("codicePost"))
                 ){
 
                     if(rsPost.next()) {

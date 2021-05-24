@@ -78,7 +78,7 @@ public class FeedServlet extends HttpServlet {
                 ps.executeUpdate();
 
                 String link = String.format("%s/comments.jsp?codicePost=%s", request.getContextPath(), request.getParameter("postCode"));
-                response.sendRedirect("comments.jsp");
+                response.sendRedirect(link);
             }
         } catch (SQLException e) {
             e.printStackTrace();
