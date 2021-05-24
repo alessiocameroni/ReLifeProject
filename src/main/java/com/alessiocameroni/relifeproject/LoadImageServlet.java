@@ -27,10 +27,6 @@ public class LoadImageServlet extends HttpServlet {
         ServletContext ctx = request.getServletContext();
         DbUtility dbu = (DbUtility) ctx.getAttribute("dbutility");
 
-        System.out.println(dbu.getUrl());
-        System.out.println(dbu.getUser());
-        System.out.println(dbu.getPassword());
-
         try (Connection cn = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword()))
         {
             String strSql = "SELECT fileImmagine, tipo FROM sitePost WHERE codice = ?";
