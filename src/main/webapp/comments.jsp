@@ -80,7 +80,8 @@
                         ResultSet rsCommento = ps.executeQuery("SELECT DISTINCT u.cognome, u.nome, c.data, c.ora, c.testo " +
                                 "FROM sitePost p, siteuser u, sitecomment c\n" +
                                 "WHERE c.codiceUtente = u.username " +
-                                "AND c.codicePost = " + request.getParameter("codicePost"))
+                                "AND c.codicePost = " + request.getParameter("codicePost")  + " " +
+                                "ORDER BY c.data DESC, c.ora DESC")
                 ){
 
                     if(rsPost.next()) {

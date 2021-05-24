@@ -105,6 +105,7 @@ public class FeedServlet extends HttpServlet {
             errorString = "La dimensione dell'immagine supera il limite. Riprovare.";
             String link = String.format("%s/createPost.jsp?errore=%s", request.getContextPath(), errorString);
             response.sendRedirect(link);
+            return;
         }
 
         ServletContext ctx = request.getServletContext();

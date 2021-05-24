@@ -73,8 +73,10 @@
                     try(
                             Connection con = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword());
                             Statement ps = con.createStatement();
-                            ResultSet rs = ps.executeQuery("SELECT sitePost.*, nome, cognome FROM sitePost, siteUser " +
-                                    "WHERE sitePost.codiceUtente = siteUser.username")
+                            ResultSet rs = ps.executeQuery("SELECT sitePost.*, nome, cognome " +
+                                    "FROM sitePost, siteUser " +
+                                    "WHERE sitePost.codiceUtente = siteUser.username " +
+                                    "ORDER BY sitePost.data DESC, sitePost.ora DESC")
                     ){
                 %>
 
