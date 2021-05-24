@@ -20,3 +20,25 @@ This application has:
 - Comment creation to a specific post
 
 This whole application uses english terms for functions, variables and others, however the entire site (as for the User Interface) has been written in Italian.
+
+#### Screenshots
+##### Index
+![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/index.png)
+
+##### Login
+![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/login.png)
+
+##### Account creation
+![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/creaaccount.png)
+
+##### Password restore
+![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/recuperapassword.png)
+
+##### Feed
+![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/feed.png)
+
+##### Upload post
+![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/caricapost.png)
+
+##### Comments
+![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/commenti.png)
