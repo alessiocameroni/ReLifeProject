@@ -106,26 +106,17 @@ nav {
     align-items: center;
 }
 
-.post-footer-col1, .post-footer-col2 {
+.post-footer-content {
+    font-size: 1em;
+    margin-right: 1.5em;
+    margin-left: 1.5em;
     color: #fafafa;
     text-align: right;
     width: 100%;
     line-height: 1.8em;
 }
 
-.post-footer-col1 {
-    width: 95%;
-    font-size: medium;
-}
-
-.post-footer-col2 {
-    width: 5%;
-    font-size: 1em;
-    margin-right: 1.5em;
-    margin-left: 1em;
-}
-
-.post-footer-col2 i {
+.post-footer-content i {
     font-size: 1.9em;
 }
 

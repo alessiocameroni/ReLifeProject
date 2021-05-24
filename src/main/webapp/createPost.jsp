@@ -81,7 +81,7 @@
                                     <input type="file" name="inputImage" required>
                                 </div>
                                 <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Carica una foto">
+                                    <input class="file-path validate" type="text" placeholder="Carica una foto (Max 500kb)">
                                 </div>
                             </div>
 

@@ -7,5 +7,7 @@
     <file url="file://$PROJECT_DIR$/sql/sitePost.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/sql/siteUser.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/alessiocameroni/relifeproject/FeedServlet.java" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/comments.jsp" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/feed.jsp" dialect="MariaDB" />
   </component>
 </project>

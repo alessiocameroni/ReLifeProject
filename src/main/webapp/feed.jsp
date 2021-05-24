@@ -80,31 +80,29 @@
 
                 <form action="feed-servlet" method="post">
                 <%
-                        while (rs.next()) {%>
+                        while (rs.next()) {
+                %>
 
                     <div class="post">
                         <div class="post-header">
                             <!-- Cognome, nome, data, ora -->
                             <div class="post-header-col1">
                                 <i class="material-icons-outlined">account_circle</i>
-                                Cameroni Alessio
+                                <%=rs.getString("cognome") + " " + rs.getString("nome")%>
                             </div>
                             <div class="post-header-col2">
-                                12-08-2002<br>
-                                16:00
+                                <%=rs.getDate("data")%>
+                                <br>
+                                <%=rs.getTime("ora")%>
                             </div>
                         </div>
                         <div class="post-body">
                             <!-- Immagine -->
-                            <div class="post-img materialboxed" style="background-image: url(resources/img/svg/photo_placeholder-large.svg)"></div>
+                            <div class="post-img materialboxed" style="background-image: url(load-image-servlet?codice=<%=rs.getInt("codice")%>);"></div>
                         </div>
                         <div class="post-footer">
-                            <!-- Pulsante commenti, numero commenti-->
-                            <div class="post-footer-col1">
-                                0
-                            </div>
-                            <div class="post-footer-col2">
-                                <a href="comments.jsp" data-position="left">
+                            <div class="post-footer-content">
+                                <a href="comments.jsp?codicePost=<%=rs.getInt("codice")%>" data-position="left">
                                     <i class="material-icons-outlined">comment</i>
                                 </a>
                             </div>

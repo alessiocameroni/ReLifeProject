@@ -4,6 +4,7 @@ import edu.fauser.DbUtility;
 
 import java.io.*;
 import java.sql.*;
+import javax.servlet.ServletContext;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -20,7 +21,6 @@ public class LoginServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String azione = request.getParameter("azione");
-        System.out.println(azione);
 
         if(azione == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -59,12 +59,9 @@ public class LoginServlet extends HttpServlet {
         String tbUsername = request.getParameter("tbUsername");
         String tbPassword = request.getParameter("tbPassword");
 
-        DbUtility dub = DbUtility.getInstance(getServletContext());
-        String url = dub.getUrl();
-        String user = dub.getUser();
-        String password = dub.getPassword();
-
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        ServletContext ctx = request.getServletContext();
+        DbUtility dbu = (DbUtility) ctx.getAttribute("dbutility");
+        try (Connection con = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword())) {
             String strSql = "SELECT username, nome, cognome FROM siteUser WHERE username = ? AND SHA2(CONCAT(salt, ?), 256) = password_hash";
 
             try (PreparedStatement ps = con.prepareStatement(strSql)) {
@@ -117,7 +114,7 @@ public class LoginServlet extends HttpServlet {
         String pwdCheck = request.getParameter("tbConfirmPassword");
 
         if(checkPwd(pwd, pwdCheck)) {
-            if(addToDatabase(nome, cognome, username, luogo, pwd)) {
+            if(addToDatabase(request, nome, cognome, username, luogo, pwd)) {
                 response.sendRedirect("login.jsp");
             } else {
                 errorString = "Errore nella creazione dell'account. Riprovare più tardi.";
@@ -132,15 +129,12 @@ public class LoginServlet extends HttpServlet {
     }
 
         //      DB Handling
-        private boolean addToDatabase(String nome, String cognome, String username, String luogo, String pwd) {
+        private boolean addToDatabase(HttpServletRequest request, String nome, String cognome, String username, String luogo, String pwd) {
             boolean check = false;
 
-            DbUtility dub = DbUtility.getInstance(getServletContext());
-            String url = dub.getUrl();
-            String user = dub.getUser();
-            String password = dub.getPassword();
-
-            try (Connection con = DriverManager.getConnection(url, user, password)) {
+            ServletContext ctx = request.getServletContext();
+            DbUtility dbu = (DbUtility) ctx.getAttribute("dbutility");
+            try (Connection con = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword())) {
                 String strSql = "CALL addUser (?, ?, ?, ?, ?)";
 
                 try (PreparedStatement ps = con.prepareStatement(strSql)) {
@@ -177,7 +171,7 @@ public class LoginServlet extends HttpServlet {
             String pwdCheck = request.getParameter("tbConfirmPassword");
 
             if(checkPwd(pwd, pwdCheck)) {
-                changePwd(username, pwd);
+                changePwd(request, username, pwd);
 
                 response.sendRedirect("login.jsp");
             } else {
@@ -193,13 +187,10 @@ public class LoginServlet extends HttpServlet {
     }
 
         //      DB handling
-        private void changePwd(String username, String pw1) {
-            DbUtility dub = DbUtility.getInstance(getServletContext());
-            String url = dub.getUrl();
-            String user = dub.getUser();
-            String password = dub.getPassword();
-
-            try (Connection con = DriverManager.getConnection(url, user, password)) {
+        private void changePwd(HttpServletRequest request, String username, String pw1) {
+            ServletContext ctx = request.getServletContext();
+            DbUtility dbu = (DbUtility) ctx.getAttribute("dbutility");
+            try (Connection con = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword())) {
                 String strSql = "CALL siteUser_change_pwd (?, ?) ";
 
                 try (PreparedStatement ps = con.prepareStatement(strSql)) {

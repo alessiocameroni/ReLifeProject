@@ -10,6 +10,7 @@ CREATE TABLE siteComment (
     codice INT AUTO_INCREMENT PRIMARY KEY,
     data DATE NOT NULL,
     ora TIME NOT NULL,
+    testo VARCHAR(140) NOT NULL,
     codiceUtente VARCHAR(20),
     codicePost INT,
     FOREIGN KEY (codiceUtente) REFERENCES siteUser(username),
@@ -19,16 +20,16 @@ CREATE TABLE siteComment (
 DROP PROCEDURE IF EXISTS addComment;
 DELIMITER //
 CREATE PROCEDURE addComment (
-    param_codice INT,
     param_data DATE,
     param_ora TIME,
+    param_testo VARCHAR(140),
     param_codiceUtente VARCHAR(20),
     param_codicePost INT
 )
 
 DETERMINISTIC
 BEGIN
-    INSERT INTO siteComment(codice, data, ora, codiceUtente, codicePost)
-    VALUES(param_codice, param_data, param_ora, param_codiceUtente, param_codicePost) ;
+    INSERT INTO siteComment(data, ora, testo, codiceUtente, codicePost)
+    VALUES(param_data, param_ora, param_testo, param_codiceUtente, param_codicePost) ;
 END //
 DELIMITER ;
