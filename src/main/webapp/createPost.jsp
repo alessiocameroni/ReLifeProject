@@ -1,13 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    HttpSession sessione = request.getSession(false);
-    String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
-
-    if(nomeCompleto != null) {
-        String[] arrNome = nomeCompleto.split(" ");
-        String nomeUtente = arrNome[1] + " " + arrNome[2];
-%>
 <html>
     <head>
         <title>Crea un post - ReLife</title>
@@ -31,8 +23,18 @@
 
     <body>
         <%
+            HttpSession sessione = request.getSession(false);
+            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
+
+            if(nomeCompleto == null) {
+                response.sendRedirect("index.jsp");
+            }
+
+            String[] arrNome = nomeCompleto.split(" ");
+            String nomeUtente = arrNome[1] + " " + arrNome[2];
+
             if(request.getParameter("errore") != null) {
-                String errore = request.getParameter("errore");
+                    String errore = request.getParameter("errore");
         %>
                 <script>M.toast({html: '<%=errore%>', classes: 'rounded'})</script>
         <%}%>
@@ -75,6 +77,9 @@
                             Alla conferma, verrà creato il post.
                         </h6>
                         <form action="feed-servlet" enctype="multipart/form-data" method="post">
+                            <input type="hidden" name="azione" value="createPost">
+                            <input type="hidden" name="cancella" value="cancella">
+
                             <div class="file-field input-field">
                                 <div class="btn btn-file-upload">
                                     <span><i class="material-icons-outlined">file_upload</i></span>
@@ -85,8 +90,6 @@
                                 </div>
                             </div>
 
-                            <input type="hidden" name="azione" value="createPost">
-
                             <button type="submit" class="waves-effect waves-light btn-large round btn-upload z-depth-0">Crea post</button>
                         </form>
                     </div>
@@ -95,8 +98,3 @@
         </main>
     </body>
 </html>
-<%
-} else {
-        response.sendRedirect("index.jsp");
-    }
-%>

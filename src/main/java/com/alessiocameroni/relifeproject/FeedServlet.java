@@ -31,7 +31,11 @@ public class FeedServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String azione = request.getParameter("azione");
-        System.out.println(azione);
+        System.out.println("Operazione = " + azione);
+
+        if(azione == null) {
+            azione = "createPost";
+        }
 
         if(azione == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -102,7 +106,7 @@ public class FeedServlet extends HttpServlet {
         try {
             img = request.getPart("inputImage");
         } catch (IllegalStateException | ServletException e) {
-            errorString = "La dimensione dell'immagine supera il limite. Riprovare.";
+            errorString = "Le dimensioni della foto superano il limite. Riprovare.";
             String link = String.format("%s/createPost.jsp?errore=%s", request.getContextPath(), errorString);
             response.sendRedirect(link);
             return;

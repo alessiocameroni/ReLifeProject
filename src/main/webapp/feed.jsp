@@ -4,14 +4,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
-<%
-    HttpSession sessione = request.getSession(false);
-    String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
-
-    if(nomeCompleto != null) {
-        String[] arrNome = nomeCompleto.split(" ");
-        String nomeUtente = arrNome[1] + " " + arrNome[2];
-%>
 <html>
     <head>
         <title>Feed - ReLife</title>
@@ -34,6 +26,17 @@
     </head>
 
     <body>
+        <%
+            HttpSession sessione = request.getSession(false);
+            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
+
+            if(nomeCompleto == null) {
+                response.sendRedirect("index.jsp");
+            }
+
+            String[] arrNome = nomeCompleto.split(" ");
+            String nomeUtente = arrNome[1] + " " + arrNome[2];
+        %>
         <div class="fixed-action-btn">
             <a href="createPost.jsp" class="waves-effect waves-light btn-large round btn-upload">
                 <i class="material-icons-outlined left">file_upload</i>
@@ -124,8 +127,3 @@
         </main>
     </body>
 </html>
-<%
-    } else {
-        response.sendRedirect("index.jsp");
-    }
-%>
