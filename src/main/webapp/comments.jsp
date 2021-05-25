@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Commenti - ReLife</title>
+        <title>Utenti - ReLife</title>
         <link rel="stylesheet" href="resources/css/style-commenti.css"/>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">

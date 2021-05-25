@@ -6,8 +6,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Feed - ReLife</title>
-        <link rel="stylesheet" href="resources/css/style-feed.css"/>
+        <title>Utenti - ReLife</title>
+        <link rel="stylesheet" href="resources/css/style-users.css"/>
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone">
@@ -21,7 +21,7 @@
                 $('.dropdown-trigger').dropdown();
                 $('.materialboxed').materialbox();
                 $('.tooltipped').tooltip();
-                $('.fixed-action-btn').floatingActionButton();
+                $('select').formSelect();
             });
         </script>
     </head>
@@ -38,15 +38,6 @@
             String[] arrNome = nomeCompleto.split(" ");
             String nomeUtente = arrNome[1] + " " + arrNome[2];
         %>
-        <div class="fixed-action-btn">
-            <a class="btn-floating btn-large waves-effect waves-light btn-upload tooltipped" data-position="left" data-tooltip="Azioni">
-                <i class="material-icons-outlined">add</i>
-            </a>
-            <ul>
-                <li><a href="showUsers.jsp" class="btn-floating blue darken-2 tooltipped" data-position="left" data-tooltip="Mostra utenti"><i class="material-icons-outlined">people</i></a></li>
-                <li><a href="createPost.jsp" class="btn-floating blue darken-4 tooltipped" data-position="left" data-tooltip="Carica post"><i class="material-icons-outlined">publish</i></a></li>
-            </ul>
-        </div>
 
         <main>
             <div class="navbar-fixed">
@@ -56,7 +47,7 @@
                             <object id="logoSvg" data="resources/img/svg/logo-gr-txt-wh.svg" width="100em" height="64em"></object>
                         </div>
                         <div id="pageTitle" class="brand-logo center">
-                            <h5>Home</h5>
+                            <h5>Utenti</h5>
                         </div>
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li>
@@ -73,60 +64,88 @@
                 </nav>
             </div>
 
-            <div id="container">
-                <%
+            <%
                     DbUtility dbu = DbUtility.getInstance(sessione.getServletContext());
+
+                    String queryString = request.getQueryString();
+                    String selectedCitiesQuery = ";";
+
+                    System.out.println(queryString);
+
+                    if(queryString != null) {
+                        String[] selectedCities = queryString.split("slCity=");
+                        selectedCitiesQuery = "WHERE ";
+
+                        for(String city:selectedCities) {
+                            city = city.replace("&","");
+                            System.out.println(city);
+                            //selectedCitiesQuery = "siteUser = " + city;
+                        }
+
+                    }
+
+                    System.out.println(selectedCitiesQuery);
 
                     try(
                             Connection con = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword());
                             Statement ps = con.createStatement();
-                            ResultSet rs = ps.executeQuery("SELECT sitePost.*, nome, cognome " +
-                                    "FROM sitePost, siteUser " +
-                                    "WHERE sitePost.codiceUtente = siteUser.username " +
-                                    "ORDER BY sitePost.data DESC, sitePost.ora DESC")
+                            ResultSet rsCities = ps.executeQuery(
+                                    "SELECT DISTINCT luogo " +
+                                    "FROM siteUser");
+
+                            ResultSet rsSearch = ps.executeQuery(
+                                    "SELECT username, nome, cognome, luogo " +
+                                    "FROM siteUser " +
+                                    selectedCitiesQuery)
                     ){
+
                 %>
 
-                <form action="feed-servlet" method="post">
+            <div id="container">
+                <form action="showUsers.jsp" method="get">
+                    <div class="topBar">
+                        <div class="topBar-left">
+                            <a class="waves-effect waves-light btn-flat btn-back" href="feed.jsp">Indietro <i class="material-icons left">arrow_back</i></a>
+                        </div>
+                        <div class="topBar-center">
+                            <div class="input-field col s12">
+                                <select name="slCity" multiple>
+                                    <option value="" disabled selected></option>
+                                    <%
+                                        while (rsCities.next()) {
+                                            String citta = rsCities.getString("luogo");
+                                    %>
+                                    <option value="<%=citta%>"><%=citta%></option>
+                                    <%}%>
+                                </select>
+                                <label>Seleziona una o più città</label>
+                            </div>
+                        </div>
+                        <div class="topBar-right">
+                            <button type="submit" class="btn-floating btn-large waves-effect waves-light btn-search z-depth-0"><i class="material-icons-outlined">search</i></button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="spacer"></div>
+
                 <%
-                        while (rs.next()) {
+                    while (rsSearch.next()) {
                 %>
 
-                    <div class="post">
-                        <div class="post-header">
-                            <!-- Cognome, nome, data, ora -->
-                            <div class="post-header-col1">
-                                <i class="material-icons-outlined">account_circle</i>
-                                <%=rs.getString("cognome") + " " + rs.getString("nome")%>
-                            </div>
-                            <div class="post-header-col2">
-                                <%=rs.getDate("data")%>
-                                <br>
-                                <%=rs.getTime("ora")%>
-                            </div>
-                        </div>
-                        <div class="post-body">
-                            <!-- Immagine -->
-                            <div class="post-img materialboxed" style="background-image: url(load-image-servlet?codice=<%=rs.getInt("codice")%>);"></div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="post-footer-content">
-                                <a href="comments.jsp?codicePost=<%=rs.getInt("codice")%>" data-position="left">
-                                    <i class="material-icons-outlined">comment</i>
-                                </a>
-                            </div>
-                        </div>
+                    <div class="user-div">
+                        <%=rsSearch.getString("username")%><br>
+                        <%=rsSearch.getString("cognome")%><br>
+                        <%=rsSearch.getString("nome")%><br>
+                        <%=rsSearch.getString("luogo")%><br>
                     </div>
 
                 <%      };
                     } catch (Exception e) {
                         e.printStackTrace();
                 %>
-                    <div class="error-div">
-                        <h5>Errore con il caricamento dei dati.</h5>
-                    </div>
+                    <!--TODO metti testo di errore-->
                 <%};%>
-                </form>
             </div>
         </main>
     </body>
