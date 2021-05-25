@@ -4,14 +4,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
-<%
-    HttpSession sessione = request.getSession(false);
-    String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
-
-    if(nomeCompleto != null) {
-        String[] arrNome = nomeCompleto.split(" ");
-        String nomeUtente = arrNome[1] + " " + arrNome[2];
-%>
 <html>
     <head>
         <title>Commenti - ReLife</title>
@@ -35,6 +27,16 @@
 
     <body>
         <%
+            HttpSession sessione = request.getSession(false);
+            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
+
+            if(nomeCompleto == null) {
+                response.sendRedirect("index.jsp");
+            }
+
+            String[] arrNome = nomeCompleto.split(" ");
+            String nomeUtente = arrNome[1] + " " + arrNome[2];
+
             if(request.getParameter("errore") != null) {
                 String errore = request.getParameter("errore");
         %>
@@ -178,8 +180,3 @@
         </main>
     </body>
 </html>
-<%
-} else {
-        response.sendRedirect("index.jsp");
-    }
-%>
