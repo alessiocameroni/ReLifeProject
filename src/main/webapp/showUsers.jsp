@@ -160,7 +160,9 @@
                     } catch (Exception e) {
                         e.printStackTrace();
                 %>
-                    <!--TODO metti testo di errore-->
+                    <div class="error-div">
+                        <h5>Errore con il caricamento dei dati.</h5>
+                    </div>
                 <%};%>
             </div>
         </main>
