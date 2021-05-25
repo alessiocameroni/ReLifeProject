@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "feedServlet", value = "/feed-servlet")
-@MultipartConfig(fileSizeThreshold = 512000, maxFileSize = 512000, maxRequestSize = 1516000)
+@MultipartConfig(fileSizeThreshold = 512000, maxFileSize = 512000, maxRequestSize = 516000)
 public class FeedServlet extends HttpServlet {
     static String errorString;
 
@@ -60,12 +60,9 @@ public class FeedServlet extends HttpServlet {
         String username = arrNome[0];
         String[] commentDateTime = getDateTime().split(" ");
 
-        DbUtility dub = DbUtility.getInstance(getServletContext());
-        String url = dub.getUrl();
-        String user = dub.getUser();
-        String password = dub.getPassword();
-
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        ServletContext ctx = request.getServletContext();
+        DbUtility dbu = (DbUtility) ctx.getAttribute("dbutility");
+        try (Connection con = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword())) {
             String strSql = "CALL addComment (?, ?, ?, ?, ?)";
 
             try (PreparedStatement ps = con.prepareStatement(strSql)) {
