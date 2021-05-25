@@ -1,6 +1,8 @@
 <%@ page import="edu.fauser.DbUtility" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.Console" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -76,12 +78,15 @@
                         String[] selectedCities = queryString.split("slCity=");
                         selectedCitiesQuery = "WHERE ";
 
-                        for(String city:selectedCities) {
-                            city = city.replace("&","");
-                            System.out.println(city);
-                            //selectedCitiesQuery = "siteUser = " + city;
-                        }
+                        for(int i = 1; i < selectedCities.length; i++) {
+                            selectedCities[i] = selectedCities[i].replace("&", "");
+                            System.out.println(selectedCities[i]);
+                            selectedCitiesQuery += "luogo = '" + selectedCities[i] + "'";
 
+                            if(i < selectedCities.length - 1) {
+                                selectedCitiesQuery += " OR ";
+                            }
+                        }
                     }
 
                     System.out.println(selectedCitiesQuery);
@@ -134,10 +139,21 @@
                 %>
 
                     <div class="user-div">
-                        <%=rsSearch.getString("username")%><br>
-                        <%=rsSearch.getString("cognome")%><br>
-                        <%=rsSearch.getString("nome")%><br>
-                        <%=rsSearch.getString("luogo")%><br>
+                        <div class="user-div-left">
+                            <i class="material-icons-outlined">account_circle</i>
+                        </div>
+                        <div class="user-div-center">
+                            <div class="center-text">
+                                <p class="sub-text-user"><%=rsSearch.getString("username")%></p>
+                                <%=rsSearch.getString("cognome") + " " + rsSearch.getString("nome")%>
+                            </div>
+                        </div>
+                        <div class="user-div-right">
+                            <div class="center-text">
+                                <p class="sub-text-user">Luogo di residenza:</p>
+                                <%=rsSearch.getString("luogo")%><br>
+                            </div>
+                        </div>
                     </div>
 
                 <%      };

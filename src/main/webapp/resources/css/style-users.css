@@ -85,9 +85,47 @@ nav {
 
 .user-div {
     width: 100%;
-    height: 10em;
-    background-color: red;
+    height: 4em;
     border-bottom: #9E9E9E 1px solid;
+}
+
+.user-div-left {
+    width: 10%;
+    float: left;
+    text-align: center;
+    padding-top: 0.35em;
+}
+
+.user-div-left i {
+    font-size: xxx-large;
+}
+
+.user-div-center {
+    width: 50%;
+    float: left;
+}
+
+.user-div-right {
+    width: 40%;
+    float: right;
+}
+
+.sub-text-user {
+    margin: 0;
+    color: #9E9E9E;
+    font-size: smaller;
+}
+
+.user-div-left, .user-div-right, .user-div-center {
+    color: #fafafa;
+    height: 100%;
+}
+
+.center-text {
+    margin-left: 1em;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /*      Text        */
