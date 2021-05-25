@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "feedServlet", value = "/feed-servlet")
-@MultipartConfig(fileSizeThreshold = 512000, maxFileSize = 512000, maxRequestSize = 516000)
+@MultipartConfig(fileSizeThreshold = 512000, maxFileSize = 512000, maxRequestSize = 1516000)
 public class FeedServlet extends HttpServlet {
     static String errorString;
 
