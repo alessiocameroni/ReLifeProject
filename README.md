@@ -18,6 +18,7 @@ This application has:
 - Password recovery system
 - Post creation with image upload
 - Comment creation to a specific post
+- Possibility to show every user and select specific user's city
 
 This whole application uses english terms for functions, variables and others, however the entire site (as for the User Interface) has been written in Italian.
 
@@ -42,3 +43,6 @@ This whole application uses english terms for functions, variables and others, h
 
 ##### Comments
 ![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/commenti.png)
+
+##### Users
+![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/users.png)
