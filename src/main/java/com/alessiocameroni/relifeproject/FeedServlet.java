@@ -18,11 +18,6 @@ import java.time.format.DateTimeFormatter;
 public class FeedServlet extends HttpServlet {
     static String errorString;
 
-    public void init() {
-        DbUtility dub = DbUtility.getInstance(getServletContext());
-        dub.setDevCredentials("jdbc:mariadb://localhost:3306/dbReLife?maxPoolSize=2&pool", "root", "");
-    }
-
     //      doGet and doPost
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -12,11 +12,6 @@ import javax.servlet.annotation.*;
 public class LoginServlet extends HttpServlet {
     static String errorString;
 
-    public void init() {
-        DbUtility dub = DbUtility.getInstance(getServletContext());
-        dub.setDevCredentials("jdbc:mariadb://localhost:3306/dbReLife?maxPoolSize=2&pool", "root", "");
-    }
-
     //      doGet and doPost
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
