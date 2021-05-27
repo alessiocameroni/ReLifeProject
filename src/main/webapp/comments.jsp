@@ -81,7 +81,7 @@
                                 "AND sitePost.codice = " + request.getParameter("codicePost"));
 
                         ResultSet rsCommento = ps.executeQuery("SELECT DISTINCT u.cognome, u.nome, c.data, c.ora, c.testo " +
-                                "FROM sitePost p, siteuser u, sitecomment c\n" +
+                                "FROM sitePost p, siteUser u, siteComment c\n" +
                                 "WHERE c.codiceUtente = u.username " +
                                 "AND c.codicePost = " + request.getParameter("codicePost")  + " " +
                                 "ORDER BY c.data DESC, c.ora DESC")
@@ -151,8 +151,9 @@
 
                 <%      };
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        e.printStackTrace(response.getWriter());
                 %>
+
                     <div class="error-div">
                         <h5>Errore con il caricamento dei dati.</h5>
                     </div>
