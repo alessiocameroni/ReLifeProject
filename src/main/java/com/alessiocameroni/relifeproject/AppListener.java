@@ -17,7 +17,7 @@ public class AppListener implements ServletContextListener, HttpSessionListener,
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        DbUtility dbu = new DbUtility();
+        DbUtility dbu = new DbUtility(); //Introdotto in dbutility 1.5.0
         dbu.setDevCredentials("jdbc:mariadb://localhost:3306/dbReLife?maxPoolSize=2&pool", "root", "");
         dbu.setProdCredentials("jdbc:mariadb://localhost:3306/db11448?maxPoolSize=2&pool", "db11448", "Jc7VD4MK");
 

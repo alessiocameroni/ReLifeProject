@@ -69,7 +69,8 @@
             </div>
 
             <%
-                DbUtility dbu = DbUtility.getInstance(sessione.getServletContext());
+                ServletContext ctx = request.getServletContext();
+                DbUtility dbu = (DbUtility) ctx.getAttribute("dbutility");
 
                 try(
                         Connection con = DriverManager.getConnection(dbu.getUrl(), dbu.getUser(), dbu.getPassword());

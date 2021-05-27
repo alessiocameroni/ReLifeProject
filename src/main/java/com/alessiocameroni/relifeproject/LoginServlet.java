@@ -112,7 +112,7 @@ public class LoginServlet extends HttpServlet {
             if(addToDatabase(request, nome, cognome, username, luogo, pwd)) {
                 response.sendRedirect("login.jsp");
             } else {
-                errorString = "Errore nella creazione dell'account. Riprovare più tardi.";
+                errorString = "Errore nella creazione dell account. Riprovare.";
                 String link = String.format("%s/createAccount.jsp?errore=%s", request.getContextPath(), errorString);
                 response.sendRedirect(link);
             }
