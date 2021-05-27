@@ -19,6 +19,7 @@ public class AppListener implements ServletContextListener, HttpSessionListener,
     public void contextInitialized(ServletContextEvent sce) {
         DbUtility dbu = new DbUtility();
         dbu.setDevCredentials("jdbc:mariadb://localhost:3306/dbReLife?maxPoolSize=2&pool", "root", "");
+        dbu.setProdCredentials("jdbc:mariadb://localhost:3306/dbReLife?maxPoolSize=2&pool", "db11448", "Jc7VD4MK");
 
         ServletContext ctx = sce.getServletContext();
         ctx.setAttribute("dbutility", dbu);

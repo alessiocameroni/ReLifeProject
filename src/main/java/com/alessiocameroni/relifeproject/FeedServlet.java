@@ -35,7 +35,7 @@ public class FeedServlet extends HttpServlet {
 
         if(azione == null) {
             errorString = "Errore con il caricamento dei dati. Riprovare.";
-            String link = String.format("%s/comments.jsp?codicePost=%s&errore=%s", request.getContextPath(), request.getParameter("postCode"), errorString);
+            String link = String.format("%s/createPost.jsp?codicePost=%s&errore=%s", request.getContextPath(), request.getParameter("postCode"), errorString);
             response.sendRedirect(link);
             return;
         }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="relifeproject-prod:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/relifeproject_prod_war</output-path>
+    <root id="archive" name="relifeproject-prod_war.war">
+      <element id="artifact" artifact-name="relifeproject:war exploded" />
+    </root>
+  </artifact>
+</component>
