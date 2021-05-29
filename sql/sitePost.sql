@@ -13,7 +13,7 @@ CREATE TABLE sitePost (
     fileImmagine LONGBLOB NOT NULL,
     tipo VARCHAR(30) NOT NULL,
     codiceUtente VARCHAR(20),
-    FOREIGN KEY (codiceUtente) REFERENCES siteUser(username)
+    FOREIGN KEY (codiceUtente) REFERENCES siteUser(username) ON DELETE CASCADE
 );
 
 DROP PROCEDURE IF EXISTS addPost;

@@ -13,8 +13,8 @@ CREATE TABLE siteComment (
     testo VARCHAR(140) NOT NULL,
     codiceUtente VARCHAR(20),
     codicePost INT,
-    FOREIGN KEY (codiceUtente) REFERENCES siteUser(username),
-    FOREIGN KEY (codicePost) REFERENCES sitePost(codice)
+    FOREIGN KEY (codiceUtente) REFERENCES siteUser(username) ON DELETE CASCADE,
+    FOREIGN KEY (codicePost) REFERENCES sitePost(codice) ON DELETE CASCADE
 );
 
 DROP PROCEDURE IF EXISTS addComment;

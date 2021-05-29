@@ -13,8 +13,8 @@ CREATE TABLE siteCheck (
     ora TIME NOT NULL,
     codiceDipendente INT,
     codiceUtente VARCHAR(20),
-    FOREIGN KEY (codiceDipendente) REFERENCES siteEmployee(codice),
-    FOREIGN KEY (codiceUtente) REFERENCES siteUser(username)
+    FOREIGN KEY (codiceDipendente) REFERENCES siteEmployee(codice) ON DELETE CASCADE,
+    FOREIGN KEY (codiceUtente) REFERENCES siteUser(username) ON DELETE CASCADE
 );
 
 DROP PROCEDURE IF EXISTS addCheck;
