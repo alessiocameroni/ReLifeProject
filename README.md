@@ -18,7 +18,7 @@ This application has:
 - Password recovery system
 - Post creation with image upload
 - Comment creation to a specific post
-- Possibility to show every user and select specific user's city
+- Show every user and filter user's based off of available cities
 
 This whole application uses english terms for functions, variables and others, however the entire site (as for the User Interface) has been written in Italian.
 
