@@ -2,7 +2,14 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.io.Console" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    HttpSession sessione = request.getSession(false);
+    String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
 
+    if(nomeCompleto == null) {
+        response.sendRedirect("index.jsp");
+    } else {
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,13 +34,6 @@
 
     <body>
         <%
-            HttpSession sessione = request.getSession(false);
-            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
-
-            if(nomeCompleto == null) {
-                response.sendRedirect("index.jsp");
-            }
-
             String[] arrNome = nomeCompleto.split(" ");
             String nomeUtente = arrNome[1] + " " + arrNome[2];
 
@@ -182,3 +182,4 @@
         </main>
     </body>
 </html>
+<%}%>

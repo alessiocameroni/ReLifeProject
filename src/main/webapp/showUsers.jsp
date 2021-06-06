@@ -4,6 +4,14 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    HttpSession sessione = request.getSession(false);
+    String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
+
+    if(nomeCompleto == null) {
+        response.sendRedirect("index.jsp");
+    } else {
+%>
 
 <!DOCTYPE html>
 <html>
@@ -30,13 +38,6 @@
 
     <body>
         <%
-            HttpSession sessione = request.getSession(false);
-            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
-
-            if(nomeCompleto == null) {
-                response.sendRedirect("index.jsp");
-            }
-
             String[] arrNome = nomeCompleto.split(" ");
             String nomeUtente = arrNome[1] + " " + arrNome[2];
         %>
@@ -169,3 +170,4 @@
         </main>
     </body>
 </html>
+<%}%>

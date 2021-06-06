@@ -3,6 +3,17 @@
 <%@ page import="java.io.Console" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%
+            HttpSession sessione = request.getSession(false);
+            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
+
+            if(nomeCompleto == null) {
+                response.sendRedirect("index.jsp");
+            } else {
+                String[] arrNome = nomeCompleto.split(" ");
+                String nomeUtente = arrNome[1] + " " + arrNome[2];
+        %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,17 +38,6 @@
     </head>
 
     <body>
-        <%
-            HttpSession sessione = request.getSession(false);
-            String nomeCompleto = (String) sessione.getAttribute("nomecompleto");
-
-            if(nomeCompleto == null) {
-                response.sendRedirect("index.jsp");
-            }
-
-            String[] arrNome = nomeCompleto.split(" ");
-            String nomeUtente = arrNome[1] + " " + arrNome[2];
-        %>
         <div class="fixed-action-btn">
             <a class="btn-floating btn-large waves-effect waves-light btn-upload tooltipped" data-position="left" data-tooltip="Azioni">
                 <i class="material-icons-outlined">add</i>
@@ -132,3 +132,4 @@
         </main>
     </body>
 </html>
+<%}%>
