@@ -2,7 +2,7 @@
 
 ![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/png/logo-gr-txt-bl.png)
 
-## The project
+### The project
 #### Brief description
 This is a Java web application that resambles a social media called ReLife.
 This project has been made for the ITT Fauser's 20/21 final exam, developed by **Cameroni Alessio**.
@@ -22,7 +22,7 @@ This application has:
 
 This whole application uses english terms for functions, variables and others, however the entire site (as for the User Interface) has been written in Italian.
 
-#### Screenshots
+### Screenshots
 ##### Index
 ![](https://github.com/alessiocameroni/relifeproject/blob/master/src/main/webapp/resources/img/screenshots/index.png)
 
